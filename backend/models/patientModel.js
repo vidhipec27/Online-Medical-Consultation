@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const prescription = require("./prescriptionModel");
 
 const patientSchema = new mongoose.Schema({
   email: {
@@ -29,22 +30,9 @@ const patientSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
-  prescriptions: [
-    {
-      date: {
-        type: String,
-      },
-      medicine: {
-        type: String,
-      },
-      duration: {
-        type: String,
-      },
-      amount: {
-        type: String,
-      },
-    },
-  ],
+  prescriptions: {
+    type: [prescription]
+  }
 });
 
 const Patient = mongoose.models.Patient || mongoose.model("Patient", patientSchema);
